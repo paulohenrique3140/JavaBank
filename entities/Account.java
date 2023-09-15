@@ -42,20 +42,18 @@ public abstract class Account {
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
-	
-	public Double getBalance() {
-		return balance;
-	}
-	
+		
 	public abstract Double calculateBalance();
 	
 	public abstract void deposit(double amount);
 	
-	public abstract boolean withdraw(double amount);
+	public abstract void withdraw(double amount);
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Hello Friend!");
+		sb.append("\nAccount number: " + accountNumber);
+		sb.append("\nHolder: " + holder);
+		sb.append("\nType: " + accountType);
 		return sb.toString();
 	}
 }

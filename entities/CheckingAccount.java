@@ -3,29 +3,29 @@ package entities;
 import entities.enums.AccountType;
 
 public class CheckingAccount extends Account {
-	private Double maintenanceFee;
+	private Integer maintenanceFee;
 	
 	public CheckingAccount() {
 		super();
 	}
 	
 	public CheckingAccount(Integer accountNumber, String holder, AccountType accountType, Double balance,
-			Double maintenanceFee) {
+			Integer maintenanceFee) {
 		super(accountNumber, holder, accountType, balance);
 		this.maintenanceFee = maintenanceFee;
 	}
 	
-	public Double getMaintenanceFee() {
+	public Integer getMaintenanceFee() {
 		return maintenanceFee;
 	}
 
-	public void setMaintenanceFee(Double maintenanceFee) {
+	public void setMaintenanceFee(Integer maintenanceFee) {
 		this.maintenanceFee = maintenanceFee;
 	}
 
 	@Override
 	public Double calculateBalance() {
-		return balance -= balance * maintenanceFee;
+		return balance - (balance * maintenanceFee / 100);
 	}
 	
 	@Override
@@ -34,17 +34,16 @@ public class CheckingAccount extends Account {
 	}
 	
 	@Override 
-	public boolean withdraw(double amount) {
-		if (amount <= balance + 1000) {
-			balance -= amount;
-			return true;
-		} else {
-			return false;
-		}
+	public void withdraw(double amount) {
+		balance -= amount;
 	}
 	
 	@Override
 	public String toString() {
-		return toString() + "Hello Friend";
+		StringBuilder sb = new StringBuilder();
+		sb.append("\nMaintenance fee: " + maintenanceFee + "%");
+		sb.append("\nBalance: $ " + String.format("%.2f", calculateBalance()));
+		sb.append("\nAvaiable limit: $ " + String.format("%.2f", 1000.00 + calculateBalance()));
+		return sb.toString();
 	}
 }

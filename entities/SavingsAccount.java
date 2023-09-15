@@ -3,29 +3,29 @@ package entities;
 import entities.enums.AccountType;
 
 public class SavingsAccount extends Account {
-	private Double interestRate;
+	private Integer interestRate;
 	
 	public SavingsAccount() {
 		super();
 	}
 	
 	public SavingsAccount(Integer accountNumber, String holder, AccountType accountType, Double balance,
-			Double interestRate) {
+			Integer interestRate) {
 		super(accountNumber, holder, accountType, balance);
 		this.interestRate = interestRate;
 	}
 	
-	public Double getInterestRate() {
+	public Integer getInterestRate() {
 		return interestRate;
 	}
 
-	public void setInterestRate(Double interestRate) {
+	public void setInterestRate(Integer interestRate) {
 		this.interestRate = interestRate;
 	}
 
 	@Override
 	public Double calculateBalance() {
-		return balance += balance * interestRate;
+		return balance + (balance * interestRate / 100);
 	}
 
 	@Override
@@ -35,16 +35,15 @@ public class SavingsAccount extends Account {
 	}
 
 	@Override
-	public boolean withdraw(double amount) {
-		if (amount <= balance) {
-			balance -= amount;
-			return true;
-		}
-		return false;
+	public void withdraw(double amount) {
+		balance -= amount;
 	}
 
 	@Override
 	public String toString() {
-		return toString() + "Hello Friend";
+		StringBuilder sb = new StringBuilder();
+		sb.append("Interest rate: " + interestRate + "%");
+		sb.append("Balance: $ " + String.format("%.2f", calculateBalance()));
+		return sb.toString();
 	}
 }
