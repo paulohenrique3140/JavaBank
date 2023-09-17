@@ -1,4 +1,4 @@
-# JavaBank - Sistema de Gerenciamento de Contas Bancárias
+# JavaBank - Gerenciamento de Contas Bancárias
 
 ![JavaBank_Logo](/logo_javaBank.png)
 
