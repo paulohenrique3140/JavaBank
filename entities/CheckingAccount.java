@@ -37,13 +37,18 @@ public class CheckingAccount extends Account {
 	public void withdraw(double amount) {
 		balance -= amount;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		sb.append("Account number: " + accountNumber);
+		sb.append("\nHolder: " + holder);
+		sb.append("\nType: "  + accountType);
 		sb.append("\nMaintenance fee: " + maintenanceFee + "%");
 		sb.append("\nBalance: $ " + String.format("%.2f", calculateBalance()));
 		sb.append("\nAvaiable limit: $ " + String.format("%.2f", 1000.00 + calculateBalance()));
 		return sb.toString();
 	}
+	
+	
 }

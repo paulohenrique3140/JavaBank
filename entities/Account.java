@@ -48,12 +48,15 @@ public abstract class Account {
 	public abstract void deposit(double amount);
 	
 	public abstract void withdraw(double amount);
-	
+
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("\nAccount number: " + accountNumber);
+		sb.append("Account number: " + accountNumber);
 		sb.append("\nHolder: " + holder);
-		sb.append("\nType: " + accountType);
+		sb.append("\nType: "  + accountType);
 		return sb.toString();
 	}
+	
+	
+	
 }
